@@ -45,5 +45,5 @@ class product_product(osv.osv):
 				res = seller
 				min_price = seller.price
 		res |= seller		
-        return res
+	        return res
 
