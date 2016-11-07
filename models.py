@@ -41,11 +41,13 @@ class product_product(osv.osv):
 			#res |= seller
 			seller_list.append(res)
 		min_price = 999999999
-	        res = self.pool.get('product.supplierinfo').browse(cr, uid, [])
 		for seller in seller_list:
 			if seller.price < min_price:
 				res = seller
 				min_price = seller.price
-		res |= seller		
+		if seller:
+			res |= seller		
+		else:
+			res = self.pool.get('product.supplierinfo').browse(cr, uid, [])
 	        return res
 
